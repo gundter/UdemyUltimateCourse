@@ -16,6 +16,12 @@ public:
 	virtual void Tick(float DeltaTime) override;
 protected:
 	virtual void BeginPlay() override;
+
+	UFUNCTION(BlueprintPure)
+	float TransformedSin() const;
+
+	UFUNCTION(BlueprintPure)
+	float TransformedCos() const;
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	float RunningTime;
