@@ -29,10 +29,11 @@ void AItem::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	RunningTime += DeltaTime;
-	// const float DeltaZ = TransformedSin(RunningTime);
-	// AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
 
 	DRAW_SPHERE_SINGLE_FRAME(GetActorLocation(), FColor::Red)
 	DRAW_VECTOR_SINGLE_FRAME(GetActorLocation(), GetActorLocation() + GetActorForwardVector() * 100)
+
+	const FVector AvgVector = Avg<FVector>(GetActorLocation(), FVector::ZeroVector);
+	DRAW_POINT_SINGLE_FRAME(AvgVector)
 }
 
