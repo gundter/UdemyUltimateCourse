@@ -12,16 +12,17 @@ AItem::AItem()
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
-
-	const FVector Location = GetActorLocation();
-	const FVector Forward = GetActorForwardVector();
-
-	DRAW_SPHERE(Location, FColor::Red)
-	DRAW_VECTOR(Location, Location + Forward * 100)
 }
 
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	RunningTime += DeltaTime;
+	const float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
+	AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
+
+	DRAW_SPHERE_SINGLE_FRAME(GetActorLocation(), FColor::Red)
+	DRAW_VECTOR_SINGLE_FRAME(GetActorLocation(), GetActorLocation() + GetActorForwardVector() * 100)
 }
 
