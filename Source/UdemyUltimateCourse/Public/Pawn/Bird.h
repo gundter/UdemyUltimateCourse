@@ -22,4 +22,7 @@ protected:
 private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCapsuleComponent> Capsule;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USkeletalMeshComponent> BirdMesh;
 };
