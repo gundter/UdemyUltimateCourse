@@ -28,5 +28,5 @@ void UUltimateAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	Velocity = CharacterMovement->Velocity;
 	GroundSpeed = UKismetMathLibrary::VSizeXY(Velocity);
 	bIsFalling = CharacterMovement->IsFalling();
-	bShouldMove = GroundSpeed > 3.f;
+	bShouldMove = GroundSpeed > 3.f && CharacterMovement->GetCurrentAcceleration() != FVector::ZeroVector;
 }

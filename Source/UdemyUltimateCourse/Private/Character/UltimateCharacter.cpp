@@ -21,8 +21,11 @@ AUltimateCharacter::AUltimateCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 500.f, 0.);
 	GetCharacterMovement()->NavAgentProps.bCanCrouch = true;
 
+	CharacterMesh = CreateDefaultSubobject<USkeletalMeshComponent>("CharacterMesh");
+	CharacterMesh->SetupAttachment(GetMesh());
+
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>("CameraBoom");
-	CameraBoom->SetupAttachment(GetMesh());
+	CameraBoom->SetupAttachment(GetRootComponent());
 	CameraBoom->TargetArmLength = 300.f;
 	CameraBoom->SocketOffset = FVector(0.f, 75.f, 50.f);
 	CameraBoom->bUsePawnControlRotation = true;

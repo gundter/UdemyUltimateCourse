@@ -38,6 +38,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> JumpAction;
 
+	UPROPERTY(VisibleAnywhere, Category = "Character")
+	TObjectPtr<USkeletalMeshComponent> CharacterMesh;
+
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
 	TObjectPtr<USpringArmComponent> CameraBoom;
 
