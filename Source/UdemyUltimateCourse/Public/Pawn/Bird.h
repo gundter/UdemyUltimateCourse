@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "Bird.generated.h"
 
+class UFloatingPawnMovement;
 class UCameraComponent;
 class USpringArmComponent;
 class UInputAction;
@@ -47,4 +48,7 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
 	TObjectPtr<UCameraComponent> FollowCamera;
+
+	UPROPERTY(VisibleAnywhere, Category = "Input")
+	TObjectPtr<UFloatingPawnMovement> PawnMovementComponent;
 };
