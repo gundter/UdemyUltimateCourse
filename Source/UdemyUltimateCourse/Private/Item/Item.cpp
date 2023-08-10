@@ -1,7 +1,7 @@
 // Copyright Serico Games
 
 
-#include "Items/Item.h"
+#include "Item/Item.h"
 
 AItem::AItem()
 {
