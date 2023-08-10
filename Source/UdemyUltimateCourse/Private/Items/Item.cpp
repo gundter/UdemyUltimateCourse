@@ -16,11 +16,8 @@ void AItem::BeginPlay()
 	const FVector Location = GetActorLocation();
 	const FVector Forward = GetActorForwardVector();
 
-	DRAW_SPHERE(Location)
+	DRAW_SPHERE(Location, FColor::Red)
 	DRAW_VECTOR(Location, Location + Forward * 100)
-	
-	
-	DRAW_SPHERE(Location)
 }
 
 void AItem::Tick(float DeltaTime)
