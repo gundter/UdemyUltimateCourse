@@ -8,6 +8,12 @@
 
 class USphereComponent;
 
+enum class EItemState : uint8
+{
+	EIS_Hovering UMETA(DisplayName = "Hovering"),
+	EIS_Equipped UMETA(DisplayName = "Equipped")
+};
+
 UCLASS()
 class UDEMYULTIMATECOURSE_API AItem : public AActor
 {
@@ -33,6 +39,8 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UStaticMeshComponent> ItemMesh;
+
+	EItemState ItemState = EItemState::EIS_Hovering;
 	
 	template<typename T>
 	static T Avg(T First, T Second);

@@ -72,6 +72,8 @@ void AUltimateCharacter::Tick(float DeltaTime)
 
 void AUltimateCharacter::Move(const FInputActionValue& Value)
 {
+	if (ActionState == EActionState::EAS_Attacking) return;
+	
 	// input is a Vector2D
 	const FVector2D MovementVector = Value.Get<FVector2D>();
 
