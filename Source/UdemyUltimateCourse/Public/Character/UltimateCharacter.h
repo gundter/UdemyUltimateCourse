@@ -39,6 +39,10 @@ protected:
 	 * Play Montage Functions
 	 */
 	void PlayAttackMontage() const;
+	bool CanAttack() const;
+	
+	UFUNCTION(BlueprintCallable)
+	void AttackEnd();
 private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputMappingContext> DefaultContext;
@@ -73,7 +77,7 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	ECharacterState CharacterState = ECharacterState::ECS_Unequipped;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	EActionState ActionState = EActionState::EAS_Unoccupied;
 
 	/*

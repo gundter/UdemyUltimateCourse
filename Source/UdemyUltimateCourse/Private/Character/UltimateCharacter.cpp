@@ -117,11 +117,17 @@ void AUltimateCharacter::EKeyPressed()
 
 void AUltimateCharacter::Attack()
 {
-	if (ActionState == EActionState::EAS_Unoccupied)
+	if (CanAttack())
 	{
 		PlayAttackMontage();
 		ActionState = EActionState::EAS_Attacking;
 	}
+}
+
+bool AUltimateCharacter::CanAttack() const
+{
+	return ActionState == EActionState::EAS_Unoccupied &&
+		CharacterState != ECharacterState::ECS_Unequipped;
 }
 
 void AUltimateCharacter::PlayAttackMontage() const
@@ -145,4 +151,9 @@ void AUltimateCharacter::PlayAttackMontage() const
 
 		AnimInstance->Montage_JumpToSection(SectionName, AttackMontage);
 	}
+}
+
+void AUltimateCharacter::AttackEnd()
+{
+	ActionState = EActionState::EAS_Unoccupied;
 }
