@@ -109,6 +109,7 @@ void AUltimateCharacter::EKeyPressed()
 {
 	if (AWeapon* OverlappingWeapon = Cast<AWeapon>(OverlappingItem))
 	{
-		OverlappingWeapon->Equip(GetMesh(), "RightHandSocket");
+		OverlappingWeapon->Equip(CharacterMesh, "RightHandSocket");
+		CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon;
 	}
 }

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Character/CharacterTypes.h"
 #include "GameFramework/Character.h"
 #include "UltimateCharacter.generated.h"
 
@@ -11,6 +12,7 @@ class UCameraComponent;
 class USpringArmComponent;
 struct FInputActionValue;
 class UInputAction;
+class UInputComponent;
 class UInputMappingContext;
 
 UCLASS()
@@ -21,7 +23,7 @@ class UDEMYULTIMATECOURSE_API AUltimateCharacter : public ACharacter
 public:
 	AUltimateCharacter();
 	virtual void Tick(float DeltaTime) override;
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 protected:
 	virtual void BeginPlay() override;
 	void Move(const FInputActionValue& Value);
@@ -55,6 +57,10 @@ private:
 	UPROPERTY(VisibleInstanceOnly)
 	TObjectPtr<AItem> OverlappingItem;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	ECharacterState CharacterState = ECharacterState::ECS_Unequipped;
+
 public:
 	FORCEINLINE void SetOverlappingItem(AItem* Item) { OverlappingItem = Item; }
+	FORCEINLINE ECharacterState GetCharacterState() const { return CharacterState; }
 };
