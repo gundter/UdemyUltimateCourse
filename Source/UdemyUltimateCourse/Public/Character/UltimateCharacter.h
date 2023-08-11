@@ -21,6 +21,8 @@ public:
 	AUltimateCharacter();
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	FORCEINLINE USkeletalMeshComponent* GetCharacterMesh() const { return CharacterMesh; }
 protected:
 	virtual void BeginPlay() override;
 	void Move(const FInputActionValue& Value);
