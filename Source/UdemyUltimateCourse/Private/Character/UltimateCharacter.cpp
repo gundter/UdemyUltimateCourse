@@ -60,6 +60,7 @@ void AUltimateCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ACharacter::Jump);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
 		EnhancedInputComponent->BindAction(EquipAction, ETriggerEvent::Started, this, &AUltimateCharacter::EKeyPressed);
+		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Started, this, &AUltimateCharacter::Attack);
 	}
 }
 
@@ -112,4 +113,8 @@ void AUltimateCharacter::EKeyPressed()
 		OverlappingWeapon->Equip(CharacterMesh, "RightHandSocket");
 		CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon;
 	}
+}
+
+void AUltimateCharacter::Attack()
+{
 }
