@@ -117,8 +117,16 @@ void AUltimateCharacter::EKeyPressed()
 
 void AUltimateCharacter::Attack()
 {
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
-	if (AnimInstance && AttackMontage)
+	if (ActionState == EActionState::EAS_Unoccupied)
+	{
+		PlayAttackMontage();
+		ActionState = EActionState::EAS_Attacking;
+	}
+}
+
+void AUltimateCharacter::PlayAttackMontage() const
+{
+	if (UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance(); AnimInstance && AttackMontage)
 	{
 		AnimInstance->Montage_Play(AttackMontage);
 		const int32 Selection = FMath::RandRange(0, 1);
@@ -132,7 +140,7 @@ void AUltimateCharacter::Attack()
 			SectionName = "Attack2";
 			break;
 		default:
-			SectionName = FName();
+			break;
 		}
 
 		AnimInstance->Montage_JumpToSection(SectionName, AttackMontage);
