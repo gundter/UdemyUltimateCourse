@@ -3,6 +3,7 @@
 
 #include "Item/Item.h"
 
+#include "Character/UltimateCharacter.h"
 #include "Components/SphereComponent.h"
 
 AItem::AItem()
@@ -37,15 +38,19 @@ float AItem::TransformedCos() const
 void AItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bSweep, const FHitResult& SweepResult)
 {
-	const FString OtherActorName = OtherActor->GetName();
-	if (GEngine) GEngine->AddOnScreenDebugMessage(1, 30.f, FColor::Red, OtherActorName);
+	if (AUltimateCharacter* Character = Cast<AUltimateCharacter>(OtherActor))
+	{
+		Character->SetOverlappingItem(this);
+	}
 }
 
 void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	const FString OtherActorName = FString("Ending Overlap with: ") + OtherActor->GetName();
-	if (GEngine) GEngine->AddOnScreenDebugMessage(2, 30.f, FColor::Blue, OtherActorName);
+	if (AUltimateCharacter* Character = Cast<AUltimateCharacter>(OtherActor))
+	{
+		Character->SetOverlappingItem(nullptr);
+	}
 }
 
 void AItem::Tick(float DeltaTime)
