@@ -33,8 +33,7 @@ protected:
 	 */
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
-	void PickupItem();
-	void EquipWeapon();
+	void EKeyPressed();
 	void Attack();
 
 	/*
@@ -51,6 +50,12 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void Disarm();
+
+	UFUNCTION(BlueprintCallable)
+	void Arm();
+
+	UFUNCTION(BlueprintCallable)
+	void FinishEquipping();
 private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputMappingContext> DefaultContext;
@@ -63,9 +68,6 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> JumpAction;
-
-	UPROPERTY(EditAnywhere, Category = "Input")
-	TObjectPtr<UInputAction> PickupAction;
 	
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> EquipAction;
