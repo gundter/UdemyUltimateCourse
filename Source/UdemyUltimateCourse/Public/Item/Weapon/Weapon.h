@@ -15,6 +15,7 @@ class UDEMYULTIMATECOURSE_API AWeapon : public AItem
 	GENERATED_BODY()
 
 public:
+	void AttachMeshToSocket(USceneComponent* InParent, FName InSocketName);
 	void Equip(USceneComponent* InParent, FName InSocketName);
 protected:
 	virtual void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bSweep, const FHitResult& SweepResult) override;
